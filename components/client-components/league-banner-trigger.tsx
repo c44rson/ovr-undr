@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import LeagueBannerModal from "./league-banner-modal";
 
 export default function LeagueBannerTrigger({
@@ -13,12 +12,13 @@ export default function LeagueBannerTrigger({
 
   return (
     <>
-      <Button
+      <button
         onClick={() => setOpen(true)}
-        className="text-xl text-white font-semibold bg-transparent border-[0.5px] border-white hover:bg-white hover:text-black transition duration-200 rounded-full"
+        className="w-40 h-10 rounded-full border border-white text-white
+      hover:bg-white hover:text-black transition disabled:opacity-50"
       >
         Edit Banner
-      </Button>
+      </button>
 
       {open && (
         <LeagueBannerModal

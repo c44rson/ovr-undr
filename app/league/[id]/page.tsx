@@ -186,23 +186,23 @@ export default async function LeaguePage({
               <div className="absolute left-4 bottom-0 translate-y-1/2 w-32 h-32 rounded-full bg-slate-50"></div>
             )}
           </div>
-          <div className="flex justify-end px-4">
-            {isAdmin && (
-              <div className="mt-4">
-                <LeagueBannerTrigger
-                  submitLeagueChanges={submitForThisLeague}
-                />
-              </div>
-            )}
-          </div>
           <div className="flex flex-row items-center justify-between border-b-[0.5px] border-gray-600 pt-6 px-4">
-            <div className="flex flex-col">
+            <div className="flex flex-col mt-12 w-full">
               <h1 className="text-2xl font-bold">{league.name}</h1>
               <h1 className="text-sm text-gray-400">
                 League Manager: {managerProfile?.username ?? "Unknown"}
               </h1>
-              <div className="my-4">
+              <div className="flex flex-row items-center my-4 w-full">
                 <LeaveLeagueButton leagueId={league.id} isAdmin={isAdmin} />
+                <div className="ml-auto">
+                  {isAdmin && (
+                    <div className="">
+                      <LeagueBannerTrigger
+                        submitLeagueChanges={submitForThisLeague}
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
