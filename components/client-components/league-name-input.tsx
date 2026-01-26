@@ -47,9 +47,7 @@ export default function LeagueInput() {
       return;
     }
 
-    // If you have a league page route, push to it:
-    // router.push(`/league/${res.league.id}`);
-    router.push(`/league/${id}`); // or wherever you want after creating
+    router.push(`/league/${id}`);
   };
 
   return (

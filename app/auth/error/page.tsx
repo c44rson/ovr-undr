@@ -8,29 +8,32 @@ export default async function Page({
   const params = await searchParams;
 
   return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
-      <div className="w-full max-w-sm">
-        <div className="flex flex-col gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl">
-                Sorry, something went wrong.
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              {params?.error ? (
-                <p className="text-sm text-muted-foreground">
-                  Code error: {params.error}
-                </p>
-              ) : (
-                <p className="text-sm text-muted-foreground">
-                  An unspecified error occurred.
-                </p>
-              )}
-            </CardContent>
-          </Card>
-        </div>
+    <main className="min-h-svh w-full bg-blueprint flex items-center justify-center px-6 py-12">
+      <div className="relative w-full max-w-md">
+        {/* glow halo */}
+        <div className="absolute inset-0 rounded-xl blur-xl bg-[#27d866]/20" />
+
+        <Card className="relative bg-black border border-white/10 text-white">
+          <CardHeader className="text-center">
+            <CardTitle className="text-3xl font-black">
+              Sorry, something went wrong.
+            </CardTitle>
+          </CardHeader>
+
+          <CardContent>
+            {params?.error ? (
+              <p className="text-center text-white/70 leading-relaxed">
+                Error code:{" "}
+                <span className="text-[#27d866]">{params.error}</span>
+              </p>
+            ) : (
+              <p className="text-center text-white/70 leading-relaxed">
+                An unspecified error occurred.
+              </p>
+            )}
+          </CardContent>
+        </Card>
       </div>
-    </div>
+    </main>
   );
 }

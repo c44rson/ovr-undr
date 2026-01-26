@@ -15,7 +15,7 @@ export default function RightSection({
 }) {
   return (
     <section className="w-[30%] hidden xl:flex flex-col space-y-4 items-stretch h-screen ml-6 sticky top-0 overflow-scroll">
-      <div className="sticky top-0 bg-black">
+      <div className="sticky top-0">
         <div className="pt-2">
           <div className="relative w-full h-full group">
             <input
@@ -23,7 +23,7 @@ export default function RightSection({
               type="text"
               placeholder="Search OvrUndr"
               className="outline-none peer focus:border-primary focus:border w-full h-full rounded-xl py-4 pl-14
-              bg-black border-gray-600 border-[0.5px]"
+               border-gray-600 border-[0.5px] bg-transparent"
             />
             <label
               htmlFor="searchBox"

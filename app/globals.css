@@ -32,12 +32,40 @@
   }
 }
 
+.poster {
+  font-stretch: condensed;
+  letter-spacing: -0.04em;
+}
+
+.bg-blueprint {
+  background-color: #0f1a2a;
+  background-image:
+    radial-gradient(ellipse at top, rgba(39, 216, 102, 0.08), transparent 55%),
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    56px 56px,
+    56px 56px;
+  background-position:
+    0 0,
+    0 0,
+    0 0;
+}
+
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background: transparent;
   }
 }
 

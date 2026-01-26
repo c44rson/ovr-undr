@@ -38,7 +38,6 @@ export function LoginForm({
         password,
       });
       if (error) throw error;
-      // Update this route to redirect to an authenticated route. The user already has an active session.
       router.push("/protected");
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
@@ -48,14 +47,18 @@ export function LoginForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+    <div className={cn("relative", className)} {...props}>
+      {/* glow halo */}
+      <div className="absolute inset-0 rounded-xl blur-xl bg-[#27d866]/20" />
+
+      <Card className="relative bg-black border border-white/10 text-white">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
-          <CardDescription>
+          <CardDescription className="text-white/60">
             Enter your email below to login to your account
           </CardDescription>
         </CardHeader>
+
         <CardContent>
           <form onSubmit={handleLogin}>
             <div className="flex flex-col gap-6">
@@ -68,14 +71,16 @@ export function LoginForm({
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="bg-black border-white/10 focus:border-[#27d866] focus:ring-[#27d866]"
                 />
               </div>
+
               <div className="grid gap-2">
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
                   <Link
                     href="/auth/forgot-password"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                    className="ml-auto inline-block text-sm text-white/60 hover:text-white underline-offset-4 hover:underline"
                   >
                     Forgot your password?
                   </Link>
@@ -86,18 +91,26 @@ export function LoginForm({
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  className="bg-black border-white/10 focus:border-[#27d866] focus:ring-[#27d866]"
                 />
               </div>
+
               {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full" disabled={isLoading}>
+
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-[#27d866] text-[#0b1220] font-bold hover:brightness-95 transition"
+              >
                 {isLoading ? "Logging in..." : "Login"}
               </Button>
             </div>
-            <div className="mt-4 text-center text-sm">
+
+            <div className="mt-4 text-center text-sm text-white/60">
               Don&apos;t have an account?{" "}
               <Link
                 href="/auth/sign-up"
-                className="underline underline-offset-4"
+                className="text-[#27d866] hover:underline underline-offset-4"
               >
                 Sign up
               </Link>

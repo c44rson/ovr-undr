@@ -45,9 +45,7 @@ export function SignUpForm({
         email,
         password,
         options: {
-          data: {
-            display_name: displayName,
-          },
+          data: { display_name: displayName },
           emailRedirectTo: `${window.location.origin}/protected`,
         },
       });
@@ -61,12 +59,18 @@ export function SignUpForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+    <div className={cn("relative", className)} {...props}>
+      {/* glow halo */}
+      <div className="absolute inset-0 rounded-xl blur-xl bg-[#27d866]/20" />
+
+      <Card className="relative bg-black border border-white/10 text-white">
         <CardHeader>
-          <CardTitle className="text-2xl">Sign up</CardTitle>
-          <CardDescription>Create a new account</CardDescription>
+          <CardTitle className="text-2xl">Create Account</CardTitle>
+          <CardDescription className="text-white/60">
+            Join the competition
+          </CardDescription>
         </CardHeader>
+
         <CardContent>
           <form onSubmit={handleSignUp}>
             <div className="flex flex-col gap-6">
@@ -79,50 +83,62 @@ export function SignUpForm({
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="bg-black border-white/10 focus:border-[#27d866] focus:ring-[#27d866]"
                 />
               </div>
+
               <div className="grid gap-2">
                 <Label htmlFor="username">Username</Label>
                 <Input
                   id="username"
-                  type="username"
                   required
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
+                  className="bg-black border-white/10 focus:border-[#27d866] focus:ring-[#27d866]"
                 />
               </div>
+
               <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
-                </div>
+                <Label htmlFor="password">Password</Label>
                 <Input
                   id="password"
                   type="password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  className="bg-black border-white/10 focus:border-[#27d866] focus:ring-[#27d866]"
                 />
               </div>
+
               <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="repeat-password">Repeat Password</Label>
-                </div>
+                <Label htmlFor="repeat-password">Repeat Password</Label>
                 <Input
                   id="repeat-password"
                   type="password"
                   required
                   value={repeatPassword}
                   onChange={(e) => setRepeatPassword(e.target.value)}
+                  className="bg-black border-white/10 focus:border-[#27d866] focus:ring-[#27d866]"
                 />
               </div>
+
               {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? "Creating an account..." : "Sign up"}
+
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-[#27d866] text-[#0b1220] font-bold hover:brightness-95 transition"
+              >
+                {isLoading ? "Creating account..." : "Sign Up"}
               </Button>
             </div>
-            <div className="mt-4 text-center text-sm">
+
+            <div className="mt-4 text-center text-sm text-white/60">
               Already have an account?{" "}
-              <Link href="/auth/login" className="underline underline-offset-4">
+              <Link
+                href="/auth/login"
+                className="text-[#27d866] hover:underline underline-offset-4"
+              >
                 Login
               </Link>
             </div>

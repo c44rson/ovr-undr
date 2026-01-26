@@ -33,7 +33,6 @@ export function UpdatePasswordForm({
     try {
       const { error } = await supabase.auth.updateUser({ password });
       if (error) throw error;
-      // Update this route to redirect to an authenticated route. The user already has an active session.
       router.push("/protected");
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
@@ -43,14 +42,18 @@ export function UpdatePasswordForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+    <div className={cn("relative", className)} {...props}>
+      {/* glow halo */}
+      <div className="absolute inset-0 rounded-xl blur-xl bg-[#27d866]/20" />
+
+      <Card className="relative bg-black border border-white/10 text-white">
         <CardHeader>
           <CardTitle className="text-2xl">Reset Your Password</CardTitle>
-          <CardDescription>
+          <CardDescription className="text-white/60">
             Please enter your new password below.
           </CardDescription>
         </CardHeader>
+
         <CardContent>
           <form onSubmit={handleForgotPassword}>
             <div className="flex flex-col gap-6">
@@ -63,10 +66,17 @@ export function UpdatePasswordForm({
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  className="bg-black border-white/10 focus:border-[#27d866] focus:ring-[#27d866]"
                 />
               </div>
+
               {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full" disabled={isLoading}>
+
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-[#27d866] text-[#0b1220] font-bold hover:brightness-95 transition"
+              >
                 {isLoading ? "Saving..." : "Save new password"}
               </Button>
             </div>
